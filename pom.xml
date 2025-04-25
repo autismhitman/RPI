@@ -1,0 +1,105 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>spotify</groupId>
+  <artifactId>spotify</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  
+  <!-- Define the version of Allure you want to use via the allure.version property -->
+<properties>
+    <allure.version>2.29.1</allure.version>
+    <aspectj.version>1.9.24</aspectj.version>
+</properties>
+
+<!-- Add allure-bom to dependency management to ensure correct versions of all the dependencies are used -->
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-bom</artifactId>
+            <version>${allure.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<build>
+ 		<plugins>
+       <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>24</source>
+                    <target>24</target>
+                </configuration>
+            </plugin>
+  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.1.2</version>
+    <configuration>
+            <parallel>methods</parallel>
+            <threadCount>10</threadCount> 
+        <argLine>
+            -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+        </argLine>
+    </configuration>
+    <dependencies>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+    	</dependencies>
+	</plugin>
+ </plugins>
+</build>
+<!-- Add necessary Allure dependencies to dependencies section -->
+<dependencies>
+    <dependency>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-testng</artifactId>
+        
+    </dependency>
+   
+        <dependency>
+    <groupId>io.qameta.allure</groupId>
+    <artifactId>allure-rest-assured</artifactId>
+    <version>2.29.1</version>
+</dependency>
+      
+	  <dependency>
+	      <groupId>io.rest-assured</groupId>
+	      <artifactId>rest-assured</artifactId>
+	      <version>5.5.1</version>	      
+	  </dependency>
+	  <dependency>
+	      <groupId>io.rest-assured</groupId>
+	      <artifactId>json-schema-validator</artifactId>
+	      <version>5.5.1</version>	    
+	  </dependency>
+	  <dependency>
+	    <groupId>org.testng</groupId>
+	    <artifactId>testng</artifactId>
+	    <version>7.11.0</version>
+      </dependency>      
+      <dependency>
+	    <groupId>com.github.javafaker</groupId>
+	    <artifactId>javafaker</artifactId>
+	    <version>1.0.2</version>
+     </dependency>     
+     <dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>2.18.3</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.skyscreamer</groupId>
+    	<artifactId>jsonassert</artifactId>
+    	<version>1.5.3</version>     
+    </dependency>
+ </dependencies>
+
+
+</project>
