@@ -29,7 +29,7 @@ public class SpotifyTests {
 	@Link(name="allure", type ="mylink")
 	@TmsLink("123")
 	@Issue("#123")
-    @Description("This test case checks that user should Be Able To Create Playlist ")
+        @Description("This test case checks that user should Be Able To Create Playlist ")
 	@Test(description="Create playlist validation test")
 	public void shouldBeAbleToCreatePlaylist() {
 		
@@ -109,7 +109,7 @@ public class SpotifyTests {
 	}	
 
 }
-
+//working fine
 
 
 
